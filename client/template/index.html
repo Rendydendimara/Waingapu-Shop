@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <title>Amazona</title>
+</head>
+
+<body>
+  <div class="grid-container">
+    <header class="header">
+      <div class="brand">
+        <!-- button untuk triger sidebar (humberger menu)-->
+        <button onclick="openMenuSideBar()">
+          &#9776;
+        </button>
+        <a href="index.html">Amazona</a>
+      </div>
+      <div class="header-links">
+        <a href="cart.html">Cart</a>
+        <a href="signin">Sign In</a>
+      </div>
+    </header>
+    <aside class="sidebar">
+      <h3>Shopping Categories</h3>
+      <button class="sidebar-close-button" onclick="closeMenuSideBar()">x</button>
+      <ul>
+        <li>
+          <a href="index.html">Pants</a>
+        </li>
+        <li>
+          <a href="index.html">Shirt</a>
+        </li>
+      </ul>
+    </aside>
+    <main class="main">
+      <div class="content">
+        <ul class="products">
+          <li>
+            <div class="product">
+              <img class="product-image" src="./images/d1.jpg" alt="product">
+              <div class="product-name">
+                <a href="product.html">Slim Shirt</a>
+              </div>
+              <div class="product-brand">Nike</div>
+              <div class="product-price">Rp 120.000</div>
+              <div class="product-rating">4.5 Star (10 Review)</div>
+            </div>
+          </li>  
+
+          <li>
+            <div class="product">
+              <img class="product-image" src="./images/d1.jpg" alt="product">
+              <div class="product-name">
+                <a href="product.html">Slim Shirt</a>
+              </div>
+              <div class="product-brand">Nike</div>
+              <div class="product-price">Rp 120.000</div>
+              <div class="product-rating">4.5 Star (10 Review)</div>
+            </div>
+          </li>  
+
+          <li>
+            <div class="product">
+              <img class="product-image" src="./images/d1.jpg" alt="product">
+              <div class="product-name">
+                <a href="product.html">Slim Shirt</a>
+              </div>
+              <div class="product-brand">Nike</div>
+              <div class="product-price">Rp 120.000</div>
+              <div class="product-rating">4.5 Star (10 Review)</div>
+            </div>
+          </li>  
+
+          <li>
+            <div class="product">
+              <img class="product-image" src="./images/d1.jpg" alt="product">
+              <div class="product-name">
+                <a href="product.html">Slim Shirt</a>
+              </div>
+              <div class="product-brand">Nike</div>
+              <div class="product-price">Rp 120.000</div>
+              <div class="product-rating">4.5 Star (10 Review)</div>
+            </div>
+          </li>  
+
+          <li>
+            <div class="product">
+              <img class="product-image" src="./images/d1.jpg" alt="product">
+              <div class="product-name">
+                <a href="product.html">Slim Shirt</a>
+              </div>
+              <div class="product-brand">Nike</div>
+              <div class="product-price">Rp 120.000</div>
+              <div class="product-rating">4.5 Star (10 Review)</div>
+            </div>
+          </li>  
+
+          <li>
+            <div class="product">
+              <img class="product-image" src="./images/d1.jpg" alt="product">
+              <div class="product-name">
+                <a href="product.html">Slim Shirt</a>
+              </div>
+              <div class="product-brand">Nike</div>
+              <div class="product-price">Rp 120.000</div>
+              <div class="product-rating">4.5 Star (10 Review)</div>
+            </div>
+          </li>  
+
+        </ul>        
+      </div>
+    </main>
+    <footer class="footer">
+      All rigth reserved
+    </footer>    
+  </div>
+  
+  <script>
+    function openMenuSideBar() {
+      document.querySelector(".sidebar").classList.add("open");
+    }
+
+    function closeMenuSideBar() {
+      document.querySelector(".sidebar").classList.remove("open");
+    }
+  </script>
+
+</body>
+</html>

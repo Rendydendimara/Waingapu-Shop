@@ -1,0 +1,5 @@
+{
+	"MONGODB_URL": "mongodb://localhost/amazona",
+	"JWT_SECRET": "somethingsecret",
+    "PAYPAL_CLIENT_ID": "sb",
+}
