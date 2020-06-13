@@ -14,7 +14,7 @@ import { getErrorMessage } from '../utils';
 const signin = (email, password) => async(dispatch) => {
 	dispatch({ type: USER_SIGNIN_REQUEST });
 	try {
-		const { data } = await axios.post('http://localhost:5000/api/users/signin', {email, password});
+		const { data } = await axios.post('/api/users/signin', {email, password});
 		dispatch({type: USER_SIGNIN_SUCCESS, payload: data});
 		Cookie.set('userInfo', JSON.stringify(data)); // set cookie untuk userInfo yang berupa data user yang berhasil signin
 	} catch(error) {
@@ -31,7 +31,7 @@ const signin = (email, password) => async(dispatch) => {
 const register = (name, email, password) => async(dispatch) => {
 	dispatch({ type: USER_REGISTER_REQUEST, payload: {name, email, password} });
 	try {
-		const { data } = await axios.post('http://localhost:5000/api/users/register', {name, email, password});
+		const { data } = await axios.post('/api/users/register', {name, email, password});
 		console.log(data)
 		dispatch({type: USER_REGISTER_SUCCESS, payload: data});
 		Cookie.set('userInfo', JSON.stringify(data)); // set cookie untuk userInfo ynag berupa data user yang berhasil register
@@ -62,7 +62,7 @@ const update = ({ userId, name, email, password }) => async (dispatch, getState)
   const { userSignin: { userInfo } } = getState();
   dispatch({ type: USER_UPDATE_REQUEST, payload: { userId, name, email, password } });
   try {
-    const { data } = await axios.put("http://localhost:5000/api/users/" + userId,
+    const { data } = await axios.put("/api/users/" + userId,
       { name, email, password }, {
       headers: {
         Authorization: 'Bearer ' + userInfo.token

@@ -36,7 +36,7 @@ import axios from 'axios';
 const listProducts = (category = '', searchKeyword = '', sortOrder = '') => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST });
-    const { data } = await axios.get(`http://localhost:5000/api/products?category=${category}&search=${searchKeyword}&sort=${sortOrder}`);
+    const { data } = await axios.get(`/api/products?category=${category}&search=${searchKeyword}&sort=${sortOrder}`);
     dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
   }
   catch (error) {
@@ -54,7 +54,7 @@ const listProducts = (category = '', searchKeyword = '', sortOrder = '') => asyn
 const listProductCategories = () => async (dispatch) => {
   dispatch({ type: PRODUCT_CATEGORY_LIST_REQUEST, loading: true });
   try {
-    const result = await axios.get('http://localhost:5000/api/products/categories');
+    const result = await axios.get('/api/products/categories');
     dispatch({ type: PRODUCT_CATEGORY_LIST_SUCCESS, payload: result.data });
   } catch (error) {
     dispatch({ type: PRODUCT_CATEGORY_LIST_FAIL, payload: getErrorMessage(error) });
@@ -70,7 +70,7 @@ const listProductCategories = () => async (dispatch) => {
 const detailsProduct = (productId) => async (dispatch) => {
 	try {
 		dispatch({type: PRODUCT_DETAILS_REQUEST });
-		const { data } = await axios.get(`http://localhost:5000/api/products/${productId}`);
+		const { data } = await axios.get(`/api/products/${productId}`);
     console.log(data);
 		dispatch({ type: PRODUCT_DETAILS_SUCCESS, payload: data });
 	} catch(error){
@@ -95,7 +95,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
      */
     if(product._id) {
       // jika product sudah ada, update product (put)
-      const {data: savedProduct} = await axios.put(`http://localhost:5000/api/products/${product._id }`, product, {
+      const {data: savedProduct} = await axios.put(`/api/products/${product._id }`, product, {
         headers: { // melakukan fetch api ke server untuk memput product dengan memberikan header Authorization bernilai : 'Bearer+serInfo.token'
           'Authorization': 'Bearer ' + userInfo.token
         }
@@ -103,7 +103,7 @@ const saveProduct = (product) => async (dispatch, getState) => {
       dispatch({type: PRODUCT_SAVE_SUCCESS, payload: savedProduct});
     } else {
       // jika product belum ada, create product (post)
-      const {data: savedProduct} = await axios.post('http://localhost:5000/api/products', product, {
+      const {data: savedProduct} = await axios.post('/api/products', product, {
         headers: { // melakukan fetch api ke server untuk mempost product dengan memberikan header Authorization bernilai : 'Bearer+serInfo.token'
           'Authorization': 'Bearer ' + userInfo.token
         }
@@ -125,7 +125,7 @@ const saveProductReview = (productId, review) => async (dispatch, getState) => {
   dispatch({ type: PRODUCT_REVIEW_SAVE_REQUEST, payload: review });
   try {
     const { userSignin: { userInfo: { token } } } = getState();
-    const { data: savedReview } = await axios.post(`http://localhost:5000/api/products/${productId}/reviews`, review, {
+    const { data: savedReview } = await axios.post(`/api/products/${productId}/reviews`, review, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -147,7 +147,7 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     // ambil informasi user yang ada di properti userSigin.userInfo dalam global state    
     const {userSignin: { userInfo }} = getState(); 
     dispatch({type: PRODUCT_DELETE_REQUEST, payload: productId});
-    const { data: deletedProduct } = await axios.delete(`http://localhost:5000/api/products/${productId}`, {
+    const { data: deletedProduct } = await axios.delete(`/api/products/${productId}`, {
         headers: { 
           'Authorization': 'Bearer ' + userInfo.token
         }
@@ -163,7 +163,7 @@ const deleteProductReview = (productId, reviewId) => async(dispatch, getState) =
     // ambil informasi user yang ada di properti userSigin.userInfo dalam global state    
     const {userSignin: { userInfo }} = getState(); 
     dispatch({type: PRODUCT_DELETE_REVIEW_REQUEST, payload: productId});
-    const { data } = await axios.delete(`http://localhost:5000/api/products/${productId}/reviews/${reviewId}`, {
+    const { data } = await axios.delete(`/api/products/${productId}/reviews/${reviewId}`, {
         headers: { 
           'Authorization': 'Bearer ' + userInfo.token
         }

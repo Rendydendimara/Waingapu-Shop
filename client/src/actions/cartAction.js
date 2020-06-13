@@ -12,7 +12,7 @@ import Cookie from 'js-cookie'
  */
 const addToCart = (productId, qty) => async (dispatch, getState) => {
  	try {
-		const { data: product } = await axios.get(`http://localhost:5000/api/products/${productId}`);
+		const { data: product } = await axios.get(`/api/products/${productId}`);
 		dispatch({ type: CART_ADD_ITEM, payload: {
 			product: product._id,
 			name: product.name,

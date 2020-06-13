@@ -23,7 +23,7 @@ const createOrder = (orderProduct) => async (dispatch, getState) => {
   dispatch({ type: ORDER_CREATE_REQUEST });
   try {
     const { userSignin: { userInfo: { token } } } = getState();
-    const { data  } = await axios.post("http://localhost:5000/api/orders", orderProduct, {
+    const { data  } = await axios.post("/api/orders", orderProduct, {
       headers: {
         'Authorization': 'Bearer ' + token
       }
@@ -45,7 +45,7 @@ const listMyOrders = () => async (dispatch, getState) => {
   try {
     dispatch({ type: MY_ORDER_LIST_REQUEST });
     const { userSignin: { userInfo : { token }} } = getState();
-    const { data } = await axios.get("http://localhost:5000/api/orders/mine", {
+    const { data } = await axios.get("/api/orders/mine", {
       headers: { 
         'Authorization': 'Bearer ' + token 
       }
@@ -67,7 +67,7 @@ const listOrders = (category) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_LIST_REQUEST, payload: category });
     const { userSignin: { userInfo : { token }} } = getState();
-    const { data } = await axios.get("http://localhost:5000/api/orders", {
+    const { data } = await axios.get("/api/orders", {
       headers:
         { 'Authorization': 'Bearer ' + token }
     });
@@ -87,7 +87,7 @@ const detailsOrder = (orderId) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DETAILS_REQUEST, payload: orderId });
     const { userSignin: { userInfo : { token }} } = getState();
-    const { data } = await axios.get("http://localhost:5000/api/orders/" + orderId, {
+    const { data } = await axios.get("/api/orders/" + orderId, {
       headers:
         { 'Authorization': 'Bearer ' + token }
     });
@@ -107,7 +107,7 @@ const payOrder = (order, paymentResult) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_PAY_REQUEST, payload: paymentResult });
     const { userSignin: { userInfo : { token }} } = getState();
-    const { data: paidOrder } = await axios.put("http://localhost:5000/api/orders/" + order._id + "/pay", paymentResult, {
+    const { data: paidOrder } = await axios.put("/api/orders/" + order._id + "/pay", paymentResult, {
       headers:
         { 'Authorization': 'Bearer ' + token }
     });
@@ -127,7 +127,7 @@ const deleteOrder = (orderId) => async (dispatch, getState) => {
   try {
     dispatch({ type: ORDER_DELETE_REQUEST });
     const { userSignin: { userInfo : { token }} } = getState();
-    const { data: deletedOrder } = await axios.delete("http://localhost:5000/api/orders/" + orderId, {
+    const { data: deletedOrder } = await axios.delete("/api/orders/" + orderId, {
       headers:
         { 'Authorization': 'Bearer ' + token }
     });
@@ -148,7 +148,7 @@ const updateOrder = (order) => async (dispatch, getState) => {
   try {
     const { userSignin: { userInfo: { token } } } = getState();
 
-    const { data: updatedOrder } = await axios.put(`http://localhost:5000/api/orders/${order._id}`, order, {
+    const { data: updatedOrder } = await axios.put(`/api/orders/${order._id}`, order, {
       headers: {
         'Authorization': 'Bearer ' + token,
       },
@@ -170,7 +170,7 @@ const deliverOrder = (order) => async (dispatch, getState) => {
   try {
     const { userSignin: { userInfo: { token } } } = getState();
 
-    const { data: paidOrder } = await axios.put(`http://localhost:5000/api/orders/${order._id}/deliver`, {}, {
+    const { data: paidOrder } = await axios.put(`/api/orders/${order._id}/deliver`, {}, {
       headers: {
         'Authorization': 'Bearer ' + token,
       },
