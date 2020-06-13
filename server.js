@@ -39,11 +39,11 @@ app.get('/api/config/paypal', (req, res) => {
 // const uploads = path.join(__dirname, './uploads');
 // app.use('/uploads', express.static(uploads));
 
-app.use(express.static(path.join(__dirname, '/../client/build')));
+app.use(express.static(path.join(__dirname, '/client/build')));
 
 // 404
 app.get('*', (req, res) => {
-  res.sendFile(path.join(`${__dirname}/../client/build/index.html`));
+  res.sendFile(path.join(`${__dirname}/client/build/index.html`));
 });
 
 // eslint-disable-next-line no-unused-vars
